@@ -30,7 +30,7 @@ local archibald = {
                 G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + card.ability.extra.money
                 G.E_MANAGER:add_event(Event({func = (function() G.GAME.dollar_buffer = 0; return true end)}))
                 return {
-                    message = localize('$')..card.ability.extra.money,
+                    message = localize('$')..(card.ability.extra.money * (math.floor(#G.consumeables.cards/2))),
                     dollars = card.ability.extra.money,
                     colour = G.C.MONEY
                 }
