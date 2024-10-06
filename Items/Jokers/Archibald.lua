@@ -25,8 +25,8 @@ local archibald = {
     end,
     calculate = function(self, card, context)
         if context.end_of_round and not context.individual and not context.repetition and not context.blueprint then
-            if #G.consumeables.cards % 2 == 0 and #G.consumeables.cards ~= 0 then
-                ease_dollars(card.ability.extra.money * (#G.consumeables.cards/2))
+            if math.floor(#G.consumeables.cards/2) >= 1 then
+                ease_dollars(card.ability.extra.money * (math.floor(#G.consumeables.cards/2)))
                 G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + card.ability.extra.money
                 G.E_MANAGER:add_event(Event({func = (function() G.GAME.dollar_buffer = 0; return true end)}))
                 return {
